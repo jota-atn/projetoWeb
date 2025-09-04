@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPIA Editora - Livros de Computação e IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50">
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#home" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-800 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">C</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">COMPIA</h1>
+                        <p class="text-sm text-gray-600">Editora</p>
+                    </div>
+                </a>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="./index.html" class="nav-link">Início</a>
+                    <a href="./categorias.html" class="nav-link">Categorias</a> 
+                    <a href="./catalogo.html" class="nav-link">Catálogo</a>
+                    <a href="#about" class="nav-link">Sobre</a> 
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input id="search-input" type="text" placeholder="Buscar livros..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <button id="cart-btn" class="relative p-2 text-gray-700 hover:text-blue-800 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9m-9 0h9"></path>
+                        </svg>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="gradient-bg tech-pattern flex text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0">
+                    <h2 class="text-5xl font-bold mb-6 leading-tight">
+                        Livros de <span class="text-cyan-400">Tecnologia</span><br>
+                        para o Futuro
+                    </h2>
+                    <p class="text-xl mb-8 text-gray-200">
+                        Conteúdo de alta qualidade que une rigor técnico a uma linguagem acessível. 
+                        A ponte entre o mundo acadêmico e o mercado de trabalho.
+                    </p>
+
+                    <div class="flex flex-col items-start gap-4">
+                        <a href="#catalog" 
+                            class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors shadow-lg">
+                            Explorar Catálogo
+                        </a>
+                        <a href="#categories" 
+                            class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors shadow-lg">
+                            Explorar Categorias
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="min-h-screen flex justify-center items-center p-8">
+
+                    <div class="relative w-[34rem] h-96 flex items-center">
+                        
+                        <div 
+                        class="absolute h-80 rounded-lg left-0 z-10 
+                                transform -rotate-12 origin-bottom-left 
+                                transition-all duration-300 ease-in-out 
+                                hover:z-40 hover:rotate-0 hover:scale-110 hover:translate-y-8"
+                        >
+                        <img src="https://m.media-amazon.com/images/I/91LldWCllgS.jpg" 
+                             alt="Capa do livro 1" 
+                             class="w-full h-full object-cover rounded-md">
+                        </div>
+
+                        <div 
+                        class="absolute h-80 rounded-lg left-1/2 -translate-x-1/2 z-20 
+                                transform rotate-3 origin-bottom 
+                                transition-all duration-300 ease-in-out 
+                                hover:z-40 hover:rotate-0 hover:scale-110 hover:translate-y-8"
+                        >
+                        <img src="https://m.media-amazon.com/images/I/91DGHmkQmjL.jpg" 
+                             alt="Capa do livro 2" 
+                             class="w-full h-full object-cover rounded-md">
+                        </div>
+
+                        <div 
+                        class="absolute h-80 rounded-lg right-0 z-30 
+                                transform rotate-12 origin-bottom-right 
+                                transition-all duration-300 ease-in-out 
+                                hover:z-40 hover:rotate-0 hover:scale-110 hover:translate-y-8"
+                        >
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ92UrV8yzVFbFrAfbhfrLWo1C5WqIBPncLFg&s" 
+                             alt="Capa do livro 3" 
+                             class="w-full h-full object-cover rounded-md">
+                        </div>
+
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="py-16 bg-blue-200"> <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Categorias em Destaque</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl hover:shadow-lg transition-shadow cursor-pointer">
+                    <div class="w-16 h-16 bg-blue-800 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Inteligência Artificial</h3>
+                    <p class="text-gray-600 mb-4">Machine Learning, Deep Learning, Redes Neurais e muito mais.</p>
+                    <span class="text-blue-800 font-semibold">24 livros disponíveis</span>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-xl hover:shadow-lg transition-shadow cursor-pointer">
+                    <div class="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Programação</h3>
+                    <p class="text-gray-600 mb-4">Python, JavaScript, Java, C++ e linguagens modernas.</p>
+                    <span class="text-green-600 font-semibold">18 livros disponíveis</span>
+                </div>
+                
+                <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-xl hover:shadow-lg transition-shadow cursor-pointer">
+                    <div class="w-16 h-16 bg-orange-500 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Cibersegurança</h3>
+                    <p class="text-gray-600 mb-4">Segurança digital, ethical hacking e proteção de dados.</p>
+                    <span class="text-orange-500 font-semibold">12 livros disponíveis</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="catalog" class="py-16 bg-blue-250">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-4">
+                <h2 class="text-4xl font-bold text-gray-800">Nossos Livros</h2>
+                <a href="./catalogo.html" class="text-blue-800 font-semibold hover:underline">
+                    Ver todos os livros &rarr;
+                </a>
+            </div>
+
+            <div class="relative">
+                <div class="swiper books-carousel">
+                    <div class="swiper-wrapper" id="books-carousel-wrapper">
+                        </div>
+                </div>
+                <div class="swiper-button-prev text-blue-800"></div>
+                <div class="swiper-button-next text-blue-800"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 bg-blue-200"> <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold text-gray-800 mb-8">Sobre a COMPIA Editora</h2>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Somos uma editora especializada em livros de alta qualidade sobre Computação e Inteligência Artificial. 
+                    Nossa missão é criar uma ponte entre o mundo acadêmico e o mercado de trabalho, oferecendo conteúdo 
+                    que une rigor técnico a uma linguagem acessível.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2025 COMPIA Editora. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800">Carrinho de Compras</h3>
+                <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="cart-items" class="space-y-4 mb-6 max-h-64 overflow-y-auto">
+                <p class="text-gray-500 text-center py-8">Seu carrinho está vazio</p>
+            </div>
+            <div class="border-t pt-4">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-semibold">Total:</span>
+                    <span id="cart-total" class="text-2xl font-bold text-blue-800">R$ 0,00</span>
+                </div>
+                <button id="checkout-btn" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    Finalizar Compra
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/pages/home.js"></script>
+</body>
+</html>

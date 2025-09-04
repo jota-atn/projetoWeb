@@ -1,0 +1,88 @@
+:root {
+  --font-primary: 'Poppins', system-ui, -apple-system, sans-serif;
+
+  --color-brand-dark: #1e3a8a;
+  --color-brand-light: #1f2937;
+  --color-text-base: #374151;
+  --color-text-hover: #1e40af;
+  
+  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.2);
+  
+  --transition-duration: 0.3s;
+  --transition-timing: ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body { 
+  font-family: var(--font-primary); 
+}
+
+.gradient-bg { 
+  background: linear-gradient(135deg, var(--color-brand-dark) 0%, var(--color-brand-light) 100%); 
+}
+
+.book-hover { 
+  transition: transform var(--transition-duration) var(--transition-timing), 
+              box-shadow var(--transition-duration) var(--transition-timing);
+  will-change: transform, box-shadow;
+}
+
+.book-hover:hover,
+.book-hover:focus-visible { 
+  outline: none;
+  transform: translateY(-8px); 
+  box-shadow: var(--shadow-hover);
+}
+
+.nav-link { 
+  color: var(--color-text-base); 
+  font-weight: 500;
+  transition: color var(--transition-duration) var(--transition-timing);
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  outline: none;
+  color: var(--color-text-hover);
+}
+
+#home, #catalog, #categories, #about {
+  scroll-margin-top: 50px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: #1e40af;
+    width: 44px; 
+    height: 44px; 
+}
+
+.swiper-button-prev {
+    left: -60px !important;
+    @media (max-width: 767px) { 
+        left: 5px !important; 
+    }
+}
+
+.swiper-button-next {
+    right: -60px !important;
+    @media (max-width: 767px) {
+        right: 5px !important;
+    }
+}
+
+@layer utilities {
+    .card-image-background::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 20rem; 
+        background-color: #f3f4f6; 
+        z-index: 0;
+    }
+}
