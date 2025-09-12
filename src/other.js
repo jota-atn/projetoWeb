@@ -14,7 +14,7 @@ const normalizeCep = cep => String(cep || '').replace(/\D/g, '');
  * @returns {Promise<Object>} Objeto JSON com os dados obtidos a partir do CEP (logradouro, bairro, localidade...).
  * @throws {Error} Se o CEP estiver inválido, ou seja não existir, ou se ocorrer o timeout/erro na rede.
  */
-const getCepInfoViaCep = async (rawCep, timeout = 7000) => {
+const getCepInfo = async (rawCep, timeout = 7000) => {
     const cep = normalizeCep(rawCep);
     if (!/^\d{8}$/.test(cep)) {
         throw new Error('CEP inválido: deve conter 8 dígitos numéricos.');
@@ -47,4 +47,4 @@ const getCepInfoViaCep = async (rawCep, timeout = 7000) => {
 };
 
 // Exemplo de uso:
-getCepInfoViaCep('58225-000').then(value => console.log(value)).catch(value => console.log(value));
+getCepInfo('58225-000').then(value => console.log(value)).catch(value => console.log(value));

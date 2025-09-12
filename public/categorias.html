@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COMPIA - Catálogo</title>
+    <title>COMPIA - Categorias</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body class="gradient-bg">
@@ -25,7 +25,7 @@
                 
                 <nav class="hidden md:flex space-x-8">
                     <a href="./index.html" class="nav-link">Início</a>
-                    <a href="./categorias.html" class="nav-link">Categorias</a> 
+                    <a href="#categories" class="nav-link">Categorias</a> 
                     <a href="./catalogo.html" class="nav-link">Catálogo</a>
                     <a href="#about" class="nav-link">Sobre</a> 
                 </nav>
@@ -48,12 +48,7 @@
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-12">
-        <h2 class="text-3xl font-bold text-gray-200 mb-8 text-left">Nosso Catálogo de Livros</h2>
-        
-        <div id="books-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            </div>
-    </main>
+    <main id="categories-container" class="container mx-auto px-4 py-12"></main>
 
     <footer class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-4 text-center text-gray-400">
@@ -85,7 +80,6 @@
             </div>
         </div>
     </div>
-
-    <script type="module" src="js/pages/catalog.js"></script>
+    <script type="module" src="js/pages/categories.js"></script>
 </body>
 </html>
