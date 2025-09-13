@@ -43,6 +43,11 @@ body {
   transition: color var(--transition-duration) var(--transition-timing);
 }
 
+.nav-link.active {
+    color: var(--color-text-hover);
+    font-weight: 700;
+}
+
 .nav-link:hover,
 .nav-link:focus-visible {
   outline: none;
@@ -50,7 +55,14 @@ body {
 }
 
 #home, #catalog, #categories, #about {
-  scroll-margin-top: 50px;
+  scroll-margin-top: 80px; 
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: #1e40af;
+    width: 44px; 
+    height: 44px; 
 }
 
 .swiper-button-prev,
@@ -74,15 +86,29 @@ body {
     }
 }
 
-@layer utilities {
-    .card-image-background::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 20rem; 
-        background-color: #f3f4f6; 
-        z-index: 0;
-    }
+.card-image-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20rem; 
+    background-color: #f3f4f6; 
+    z-index: 0;
+}
+
+.category-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0.75rem; 
+    bottom: 0;
+    left: 1.5rem;
+    width: 2px;
+    background-color: #e5e7eb; 
+}
+
+.btn-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
 }

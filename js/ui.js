@@ -2,10 +2,12 @@ import { addToCart } from './cart.js';
 
 export function createBookCardHTML(book) {
     return `
-        <div class="bg-white rounded-xl book-hover flex flex-col h-full overflow-hidden">
-            <div class="h-80 flex items-center justify-center bg-gray-100 p-4">
+        <div class="bg-white rounded-xl book-hover flex flex-col h-full overflow-hidden w-72"> 
+            
+            <div class="h-72 flex items-center justify-center bg-gray-100 p-4">
                 <img src="${book.coverImage}" alt="Capa do livro ${book.title}" class="max-h-full w-auto object-contain">
             </div>
+
             <div class="p-6 flex flex-col flex-1"> 
                 <h3 class="text-xl font-bold text-gray-800 mb-2">${book.title}</h3>
                 <p class="text-gray-600 mb-2">${book.author}</p>
@@ -63,5 +65,25 @@ export function initializeGlobalUI() {
                 button.disabled = false;
             }, 2000);
         }
+    });
+}
+
+export function initializeBackToTopButton() {
+    const backToTopBtn = document.getElementById('back-to-top-btn');
+    if (!backToTopBtn) return; 
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('btn-visible');
+        } else {
+            backToTopBtn.classList.remove('btn-visible');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' 
+        });
     });
 }
