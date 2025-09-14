@@ -1,4 +1,5 @@
 import { addToCart } from './cart.js';
+import { booksData } from './data.js'
 
 export function createBookCardHTML(book) {
     const hasEditions = book.editions && book.editions.length > 0;
@@ -65,19 +66,34 @@ export function initializeGlobalUI() {
 
     document.body.addEventListener('click', (event) => {
         const button = event.target.closest('.add-to-cart');
-        if (button) {
-            const bookId = parseInt(button.dataset.bookId, 10);
-            
-            addToCart(bookId);
+        if (!button || button.disabled) return;
+
+        const bookId = parseInt(button.dataset.bookId, 10);
+        let formatToAdd;
+
+        const modal = event.target.closest('#book-modal');
+        if (modal) {
+            const selectedButton = modal.querySelector('.format-btn.selected');
+            if (selectedButton) {
+                formatToAdd = selectedButton.dataset.format;
+            }
+        } else {
+            const book = booksData.find(b => b.id === bookId);
+            if (book && book.editions && book.editions.length > 0) {
+                const cheapestEdition = [...book.editions].sort((a, b) => a.price - b.price)[0];
+                formatToAdd = cheapestEdition.format;
+            }
+        }
+        
+        if (formatToAdd) {
+            addToCart(bookId, formatToAdd);
 
             button.textContent = 'Adicionado!';
             button.classList.replace('bg-orange-500', 'bg-green-500');
-            button.disabled = true;
-
+            
             setTimeout(() => {
                 button.textContent = 'Adicionar ao Carrinho';
                 button.classList.replace('bg-green-500', 'bg-orange-500');
-                button.disabled = false;
             }, 2000);
         }
     });
@@ -102,9 +118,6 @@ export function initializeBackToTopButton() {
         });
     });
 }
-
-// Lembre-se de adicionar esta importação no topo do seu arquivo ui.js
-import { booksData } from './data.js';
 
 export function initializeBookModal() {
     const modal = document.getElementById('book-modal');
@@ -192,12 +205,6 @@ export function initializeBookModal() {
 
         const newPrice = parseFloat(clickedButton.dataset.price);
         priceEl.textContent = `R$ ${newPrice.toFixed(2).replace('.', ',')}`;
-    });
-
-    addToCartBtn.addEventListener('click', () => {
-        setTimeout(() => {
-            closeModal();
-        }, 800);
     });
 
     closeModalBtn.addEventListener('click', closeModal);
