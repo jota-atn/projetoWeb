@@ -180,7 +180,6 @@ function setupFilters() {
         });
 
         renderPageLayout(filteredBooks);
-        document.getElementById('categories-container')?.scrollIntoView({ behavior: 'smooth' });
     };
 
     const clearFilters = () => {
