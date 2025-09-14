@@ -79,6 +79,7 @@ body {
 
 #categories-container {
     grid-area: main;
+    min-width: 0;
 }
 
 #desktop-sidebar-toggle {
@@ -102,6 +103,43 @@ body.sidebar-collapsed #sidebar {
     opacity: 0;
     padding: 0;
     overflow: hidden;
+}
+
+#book-modal {
+    opacity: 0;
+}
+
+#book-modal.opacity-100 {
+    opacity: 1;
+}
+
+#book-modal-content {
+    transform: scale(0.95);
+}
+
+#book-modal-content.scale-100 {
+    transform: scale(1);
+}
+
+.format-btn {
+    border-color: #d1d5db;
+    background-color: transparent;
+    color: #374151; 
+}
+
+.format-btn.selected {
+    border-color: #1d4ed8; 
+    background-color: #1d4ed8; 
+    color: white;
+}
+
+
+#catalog .swiper-button-prev {
+    left: 0;
+}
+
+#catalog .swiper-button-next {
+    right: 0;
 }
 
 @media (max-width: 767px) {
