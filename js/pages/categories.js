@@ -1,6 +1,10 @@
 import { booksData } from '../data.js';
 import { updateCartUI, initializeCartListeners } from '../cart.js';
-import { createBookCardHTML, initializeGlobalUI } from '../ui.js';
+import { 
+    createBookCardHTML, 
+    initializeGlobalUI,
+    initializeBookModal
+} from '../ui.js';
 
 let swiperInstances = [];
 
@@ -205,4 +209,5 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPageLayout(booksData);
     updateCartUI();
     initializeCartListeners();
+    initializeBookModal();
 });
