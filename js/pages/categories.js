@@ -137,6 +137,7 @@ function setupSidebars() {
 function setupFilters() {
     const minPriceEl = document.getElementById('min-price');
     const maxPriceEl = document.getElementById('max-price');
+    const authorInputEl = document.getElementById('author-input');
     const ratingFilterEl = document.getElementById('rating-filter');
     const stars = ratingFilterEl ? ratingFilterEl.querySelectorAll('.star') : [];
     const formatCheckboxes = document.querySelectorAll('#format-filter input[type="checkbox"]');
@@ -162,6 +163,8 @@ function setupFilters() {
         const selectedFormats = getCheckedValues(formatCheckboxes);
         const selectedLanguages = getCheckedValues(languageCheckboxes);
 
+        const authorQuery = authorInputEl.value.trim().toLowerCase();
+
         const filteredBooks = booksData.filter(book => {
             const ratingMatch = book.rating >= selectedRating;
             
@@ -170,8 +173,10 @@ function setupFilters() {
             const formatMatch = selectedFormats.length === 0 || book.editions.some(edition => selectedFormats.includes(edition.format));
             
             const languageMatch = selectedLanguages.length === 0 || selectedLanguages.includes(book.language);
+
+            const authorMatch = authorQuery === '' || book.author.trim().toLowerCase().includes(authorQuery);
             
-            return ratingMatch && priceMatch && formatMatch && languageMatch;
+            return ratingMatch && priceMatch && formatMatch && languageMatch && authorMatch; 
         });
 
         renderPageLayout(filteredBooks);
