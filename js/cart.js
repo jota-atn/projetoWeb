@@ -26,14 +26,19 @@ export function updateCartUI() {
     } else {
         cartItemsContainer.innerHTML = cart.map(item => `
             <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                <div>
+                <img src="${item.coverImage}" alt="${item.title}" class="w-16 h-24 object-cover rounded-md mr-4">
+                <div class="flex-grow">
                     <h4 class="font-semibold text-gray-800">${item.title}</h4>
                     <p class="text-sm text-gray-500">${item.format}</p> 
-                    <p class="text-gray-600 mt-1">Quantidade: ${item.quantity}</p>
+                    <div class="flex items-center gap-3 mt-2">
+                        <button class="quantity-btn quantity-minus" data-item-id="${item.itemId}">-</button>
+                        <span class="font-medium">${item.quantity}</span>
+                        <button class="quantity-btn quantity-plus" data-item-id="${item.itemId}">+</button>
+                    </div>
                 </div>
                 <div class="text-right">
                     <p class="font-bold text-blue-800">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</p>
-                    <button class="text-red-500 text-sm hover:text-red-700 remove-from-cart-btn" data-item-id="${item.itemId}">Remover</button>
+                    <button class="text-red-500 text-sm hover:text-red-700 remove-from-cart-btn mt-2" data-item-id="${item.itemId}">Remover</button>
                 </div>
             </div>
         `).join('');
@@ -46,10 +51,7 @@ export function addToCart(bookId, format) {
     if (!bookToAdd) return;
 
     const edition = bookToAdd.editions.find(e => e.format === format);
-    if (!edition) {
-        console.error(`Edição ${format} não encontrada para o livro ${bookId}`);
-        return;
-    }
+    if (!edition) return;
 
     const itemId = `${bookId}-${format}`;
     const existingItem = cart.find(item => item.itemId === itemId);
@@ -58,11 +60,11 @@ export function addToCart(bookId, format) {
         existingItem.quantity += 1;
     } else {
         cart.push({
-            itemId: itemId,
+            itemId,
             id: bookToAdd.id,
             title: bookToAdd.title,
-            price: edition.price, 
-            format: edition.format, 
+            price: edition.price,
+            format: edition.format,
             quantity: 1,
             coverImage: bookToAdd.coverImage
         });
@@ -72,35 +74,62 @@ export function addToCart(bookId, format) {
     saveCartToLocalStorage();
 }
 
+function changeQuantity(itemId, change) {
+    const item = cart.find(i => i.itemId === itemId);
+    if (!item) return;
+
+    item.quantity += change;
+
+    if (item.quantity <= 0) {
+        removeFromCart(itemId);
+    } else {
+        updateCartUI();
+        saveCartToLocalStorage();
+    }
+}
+
 export function removeFromCart(itemId) {
     cart = cart.filter(item => item.itemId !== itemId);
     updateCartUI();
     saveCartToLocalStorage();
 }
 
-export function initializeCartListeners() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const checkoutBtn = document.getElementById('checkout-btn');
+function clearCart() {
+    cart = [];
+    updateCartUI();
+    saveCartToLocalStorage();
+}
 
-    if (cartItemsContainer) {
-        cartItemsContainer.addEventListener('click', (event) => {
-            const button = event.target.closest('.remove-from-cart-btn');
-            if (button) {
-                const itemId = button.dataset.itemId;
-                removeFromCart(itemId);
-            }
-        });
-    }
-    
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', () => {
-            if (cart.length > 0) {
-                alert('Compra finalizada com sucesso!\n\nObrigado por escolher a COMPIA Editora!');
-                cart = [];
-                updateCartUI();
-                saveCartToLocalStorage();
-                document.getElementById('cart-modal').classList.add('hidden');
-            }
-        });
-    }
+export function initializeCartListeners() {
+    const cartModal = document.querySelector('#cart-modal');
+    if (!cartModal) return;
+
+    cartModal.addEventListener('click', (event) => {
+        const target = event.target;
+        
+        if (target.matches('.remove-from-cart-btn')) {
+            const itemId = target.dataset.itemId;
+            removeFromCart(itemId);
+        }
+        
+        if (target.matches('.quantity-plus')) {
+            const itemId = target.dataset.itemId;
+            changeQuantity(itemId, 1);
+        }
+        
+        if (target.matches('.quantity-minus')) {
+            const itemId = target.dataset.itemId;
+            changeQuantity(itemId, -1);
+        }
+        
+        if (target.matches('#clear-cart-btn')) {
+            clearCart();
+        }
+        
+        if (target.matches('#checkout-btn') && cart.length > 0) {
+            alert('Compra finalizada com sucesso!\n\nObrigado por escolher a COMPIA Editora!');
+            clearCart();
+            document.getElementById('cart-modal').classList.add('hidden');
+        }
+    });
 }
