@@ -186,6 +186,7 @@ function setupFilters() {
     const clearFilters = () => {
         minPriceEl.value = '';
         maxPriceEl.value = '';
+        authorInputEl = '';
         formatCheckboxes.forEach(cb => cb.checked = false);
         languageCheckboxes.forEach(cb => cb.checked = false);
         selectedRating = 0;
