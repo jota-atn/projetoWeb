@@ -1,46 +1,47 @@
 :root {
-  --font-primary: 'Poppins', system-ui, -apple-system, sans-serif;
-
-  --color-brand-dark: #1e3a8a;
-  --color-brand-light: #1f2937;
-  --color-text-base: #374151;
-  --color-text-hover: #1e40af;
-  
-  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.2);
-  
-  --transition-duration: 0.3s;
-  --transition-timing: ease;
+    --font-primary: 'Poppins', system-ui, -apple-system, sans-serif;
+    --color-brand-dark: #1e3a8a;
+    --color-brand-light: #1f2937;
+    --color-text-base: #374151;
+    --color-text-hover: #1e40af;
+    --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.2);
+    --transition-duration: 0.3s;
+    --transition-timing: ease;
 }
 
-html {
-  scroll-behavior: smooth;
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: var(--font-primary);
+    overflow-x: hidden;
 }
 
-body { 
-  font-family: var(--font-primary); 
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f5f9;
 }
 
-.gradient-bg { 
-  background: linear-gradient(135deg, var(--color-brand-dark) 0%, var(--color-brand-light) 100%); 
+.gradient-bg {
+    background: linear-gradient(135deg, var(--color-brand-dark) 0%, var(--color-brand-light) 100%);
 }
 
-.book-hover { 
-  transition: transform var(--transition-duration) var(--transition-timing), 
-              box-shadow var(--transition-duration) var(--transition-timing);
-  will-change: transform, box-shadow;
+.book-hover {
+    transition: transform var(--transition-duration) var(--transition-timing),
+        box-shadow var(--transition-duration) var(--transition-timing);
+    will-change: transform, box-shadow;
 }
 
 .book-hover:hover,
-.book-hover:focus-visible { 
-  outline: none;
-  transform: translateY(-8px); 
-  box-shadow: var(--shadow-hover);
+.book-hover:focus-visible {
+    outline: none;
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
 }
 
-.nav-link { 
-  color: var(--color-text-base); 
-  font-weight: 500;
-  transition: color var(--transition-duration) var(--transition-timing);
+.nav-link {
+    font-weight: 500;
+    transition: color var(--transition-duration) var(--transition-timing);
 }
 
 .nav-link.active {
@@ -50,65 +51,70 @@ body {
 
 .nav-link:hover,
 .nav-link:focus-visible {
-  outline: none;
-  color: var(--color-text-hover);
-}
-
-#home, #catalog, #categories, #about {
-  scroll-margin-top: 80px; 
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-    color: #1e40af;
-    width: 44px; 
-    height: 44px; 
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-    color: #1e40af;
-    width: 44px; 
-    height: 44px; 
-}
-
-.swiper-button-prev {
-    left: -60px !important;
-    @media (max-width: 767px) { 
-        left: 5px !important; 
-    }
-}
-
-.swiper-button-next {
-    right: -60px !important;
-    @media (max-width: 767px) {
-        right: 5px !important;
-    }
-}
-
-.card-image-background::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 20rem; 
-    background-color: #f3f4f6; 
-    z-index: 0;
-}
-
-.category-timeline::before {
-    content: '';
-    position: absolute;
-    top: 0.75rem; 
-    bottom: 0;
-    left: 1.5rem;
-    width: 2px;
-    background-color: #e5e7eb; 
+    outline: none;
+    color: var(--color-text-hover);
 }
 
 .btn-visible {
     opacity: 1 !important;
     transform: translateY(0) !important;
     visibility: visible !important;
+}
+
+.page-container {
+    display: grid;
+    grid-template-columns: 288px 1fr;
+    grid-template-areas: "sidebar main";
+    flex-grow: 1;
+    transition: grid-template-columns 0.3s ease-in-out;
+}
+
+#sidebar {
+    grid-area: sidebar;
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+}
+
+#categories-container {
+    grid-area: main;
+}
+
+#desktop-sidebar-toggle {
+    left: 288px;
+    transition: left 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+body.sidebar-collapsed #desktop-sidebar-toggle {
+    left: 0; 
+}
+
+body.sidebar-collapsed #desktop-sidebar-toggle svg {
+    transform: rotate(180deg);
+}
+
+body.sidebar-collapsed .page-container {
+    grid-template-columns: 0 1fr;
+}
+
+body.sidebar-collapsed #sidebar {
+    opacity: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+@media (max-width: 767px) {
+    .page-container {
+        grid-template-columns: 1fr;
+        grid-template-areas: "main";
+    }
+
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 60;
+    }
 }
