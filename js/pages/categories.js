@@ -164,9 +164,10 @@ function setupFilters() {
 
         const filteredBooks = booksData.filter(book => {
             const ratingMatch = book.rating >= selectedRating;
-            const priceMatch = book.price >= minPrice && book.price <= maxPrice;
             
-            const formatMatch = selectedFormats.length === 0 || book.formats.some(format => selectedFormats.includes(format));
+            const priceMatch = book.editions.some(edition => edition.price >= minPrice && edition.price <= maxPrice);
+            
+            const formatMatch = selectedFormats.length === 0 || book.editions.some(edition => selectedFormats.includes(edition.format));
             
             const languageMatch = selectedLanguages.length === 0 || selectedLanguages.includes(book.language);
             
