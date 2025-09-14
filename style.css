@@ -142,6 +142,22 @@ body.sidebar-collapsed #sidebar {
     right: 0;
 }
 
+.quantity-btn {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #d1d5db;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #4b5563;
+    transition: background-color 0.2s;
+}
+.quantity-btn:hover {
+    background-color: #f3f4f6;
+}
+
 @media (max-width: 767px) {
     .page-container {
         grid-template-columns: 1fr;
