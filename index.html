@@ -13,7 +13,7 @@
 
 <body class="bg-gray-50">
     <header class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4">
+        <div class="container mx-10 px-2 py-4">
             <div class="flex items-center justify-between">
                 <a href="#home" class="flex items-center space-x-3">
                     <div class="w-10 h-10 bg-gradient-to-r from-blue-800 to-cyan-500 rounded-lg flex items-center justify-center">
@@ -26,7 +26,7 @@
                 </a>
                 
                 <nav class="hidden md:flex space-x-8">
-                    <a href="./index.html" class="nav-link">Início</a>
+                    <a href="#home" class="nav-link">Início</a>
                     <a href="./categorias.html" class="nav-link">Categorias</a> 
                     <a href="./catalogo.html" class="nav-link">Catálogo</a>
                     <a href="#about" class="nav-link">Sobre</a> 
@@ -168,10 +168,9 @@
                 </a>
             </div>
 
-            <div class="relative">
+            <div class="relative px-12">
                 <div class="swiper books-carousel">
-                    <div class="swiper-wrapper" id="books-carousel-wrapper">
-                        </div>
+                    <div class="swiper-wrapper" id="books-carousel-wrapper"></div>
                 </div>
                 <div class="swiper-button-prev text-blue-800"></div>
                 <div class="swiper-button-next text-blue-800"></div>
@@ -218,6 +217,45 @@
                 <button id="checkout-btn" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
                     Finalizar Compra
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="book-modal" class="fixed inset-0 bg-black bg-opacity-60 hidden z-50 flex items-center justify-center p-4 transition-opacity duration-300">
+        <div id="book-modal-content" class="bg-white rounded-xl shadow-2xl p-6 md:p-8 max-w-4xl w-full mx-auto relative transform scale-95 transition-transform duration-300">
+            <button id="close-book-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition-colors">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div class="flex justify-center items-center">
+                    <img id="modal-book-image" src="" alt="Capa do livro" class="max-w-full h-auto max-h-96 rounded-lg shadow-lg">
+                </div>
+
+                <div class="flex flex-col">
+                    <h2 id="modal-book-title" class="text-3xl font-bold text-gray-800 mb-2">Título do Livro</h2>
+                    <p class="text-gray-500 mb-4">por <span id="modal-book-author" class="font-medium text-gray-700">Autor</span></p>
+                    <div id="modal-book-rating" class="flex items-center mb-4">
+                        </div>
+                    <p id="modal-book-description" class="text-gray-600 mb-6 flex-grow">Descrição completa do livro...</p>
+                    
+                    <div class="flex justify-between items-center mb-6">
+                        <span id="modal-book-price" class="text-3xl font-bold text-blue-800">R$ 0,00</span>
+                        <button id="modal-add-to-cart-btn" class="bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold text-lg transition-colors shadow-md add-to-cart">
+                            Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-6 border-gray-200">
+
+            <div class="text-center">
+                <h3 class="text-sm font-semibold text-gray-500 mb-3">ESCOLHA O FORMATO</h3>
+                <div id="modal-book-formats" class="flex justify-center gap-3">
+                    </div>
             </div>
         </div>
     </div>
