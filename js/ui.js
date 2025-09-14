@@ -1,8 +1,20 @@
 import { addToCart } from './cart.js';
 
 export function createBookCardHTML(book) {
+    const hasEditions = book.editions && book.editions.length > 0;
+    
+    let priceHTML = '<span class="text-lg text-red-500 font-semibold">Indisponível</span>';
+    let formatsHTML = '';
+
+    if (hasEditions) {
+        const lowestPrice = Math.min(...book.editions.map(e => e.price));
+        priceHTML = `<span class="text-2xl font-bold text-blue-800">A partir de R$ ${lowestPrice.toFixed(2).replace('.', ',')}</span>`;
+        
+        formatsHTML = `<span class="text-sm text-gray-500">${book.editions.map(e => e.format).join(' | ')}</span>`;
+    }
+
     return `
-        <div class="bg-white rounded-xl book-hover flex flex-col h-full overflow-hidden w-72"> 
+        <div class="bg-white rounded-xl book-hover flex flex-col h-full overflow-hidden cursor-pointer" data-book-id="${book.id}"> 
             
             <div class="h-72 flex items-center justify-center bg-gray-100 p-4">
                 <img src="${book.coverImage}" alt="Capa do livro ${book.title}" class="max-h-full w-auto object-contain">
@@ -13,10 +25,13 @@ export function createBookCardHTML(book) {
                 <p class="text-gray-600 mb-2">${book.author}</p>
                 <div class="mt-auto"> 
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-2xl font-bold text-blue-800">R$ ${book.price.toFixed(2).replace('.', ',')}</span>
-                        <span class="text-sm text-gray-500">Físico | E-book</span>
+                        ${priceHTML}
+                        ${formatsHTML}
                     </div>
-                    <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-colors add-to-cart" data-book-id="${book.id}">
+                    <button 
+                        class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-colors add-to-cart ${!hasEditions ? 'opacity-50 cursor-not-allowed' : ''}" 
+                        data-book-id="${book.id}"
+                        ${!hasEditions ? 'disabled' : ''}>
                         Adicionar ao Carrinho
                     </button>
                 </div>
