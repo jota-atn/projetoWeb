@@ -159,6 +159,20 @@ body.sidebar-collapsed #sidebar {
     background-color: #f3f4f6;
 }
 
+.line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+}
+
+.checkout-swiper .swiper-slide {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
 @media (max-width: 767px) {
     .page-container {
         grid-template-columns: 1fr;
