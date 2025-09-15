@@ -3,7 +3,10 @@ import { updateCartUI, initializeCartListeners } from '../cart.js';
 import { 
     createBookCardHTML, 
     initializeGlobalUI,
-    initializeBookModal
+    initializeBookModal,
+    setupBackToTopButton,
+    setupFilters,
+    setupSidebars
 } from '../ui.js';
 
 let swiperInstances = [];
@@ -105,115 +108,13 @@ function renderPageLayout(booksToRender) {
     initializeCarousels();
 }
 
-function setupSidebars() {
-    const sidebar = document.getElementById('sidebar');
-    const sidebarToggle = document.getElementById('sidebar-toggle');
-    const overlay = document.getElementById('sidebar-overlay');
-
-    if (sidebar && sidebarToggle && overlay) {
-        const toggleSidebar = () => {
-            const isHidden = sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('hidden', isHidden);
-            sidebarToggle.innerHTML = sidebar.classList.contains('-translate-x-full') 
-                ? sidebarToggle.dataset.openIcon 
-                : sidebarToggle.dataset.closeIcon;
-        };
-        sidebarToggle.dataset.openIcon = sidebarToggle.innerHTML;
-        sidebarToggle.dataset.closeIcon = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
-
-        sidebarToggle.addEventListener('click', e => {
-            e.stopPropagation();
-            toggleSidebar();
-        });
-        overlay.addEventListener('click', toggleSidebar);
-    }
-
-    const desktopToggleBtn = document.getElementById('desktop-sidebar-toggle');
-    desktopToggleBtn?.addEventListener('click', () => {
-        document.body.classList.toggle('sidebar-collapsed');
-    });
-}
-
-function setupFilters() {
-    const minPriceEl = document.getElementById('min-price');
-    const maxPriceEl = document.getElementById('max-price');
-    const authorInputEl = document.getElementById('author-input');
-    const ratingFilterEl = document.getElementById('rating-filter');
-    const stars = ratingFilterEl ? ratingFilterEl.querySelectorAll('.star') : [];
-    const formatCheckboxes = document.querySelectorAll('#format-filter input[type="checkbox"]');
-    const languageCheckboxes = document.querySelectorAll('#language-filter input[type="checkbox"]');
-    
-    let selectedRating = 0;
-
-    stars.forEach(star => {
-        star.addEventListener('click', () => {
-            selectedRating = parseInt(star.dataset.value);
-            stars.forEach(s => {
-                s.classList.toggle('text-yellow-400', parseInt(s.dataset.value) <= selectedRating);
-                s.classList.toggle('text-gray-300', parseInt(s.dataset.value) > selectedRating);
-            });
-        });
-    });
-
-    const applyFilters = () => {
-        const minPrice = parseFloat(minPriceEl.value) || 0;
-        const maxPrice = parseFloat(maxPriceEl.value) || Infinity;
-        
-        const getCheckedValues = (checkboxes) => Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
-        const selectedFormats = getCheckedValues(formatCheckboxes);
-        const selectedLanguages = getCheckedValues(languageCheckboxes);
-
-        const authorQuery = authorInputEl.value.trim().toLowerCase();
-
-        const filteredBooks = booksData.filter(book => {
-            const ratingMatch = book.rating >= selectedRating;
-            
-            const priceMatch = book.editions.some(edition => edition.price >= minPrice && edition.price <= maxPrice);
-            
-            const formatMatch = selectedFormats.length === 0 || book.editions.some(edition => selectedFormats.includes(edition.format));
-            
-            const languageMatch = selectedLanguages.length === 0 || selectedLanguages.includes(book.language);
-
-            const authorMatch = authorQuery === '' || book.author.trim().toLowerCase().includes(authorQuery);
-            
-            return ratingMatch && priceMatch && formatMatch && languageMatch && authorMatch; 
-        });
-
-        renderPageLayout(filteredBooks);
-    };
-
-    const clearFilters = () => {
-        minPriceEl.value = '';
-        maxPriceEl.value = '';
-        authorInputEl.value = '';
-        formatCheckboxes.forEach(cb => cb.checked = false);
-        languageCheckboxes.forEach(cb => cb.checked = false);
-        selectedRating = 0;
-        stars.forEach(s => s.classList.replace('text-yellow-400', 'text-gray-300'));
-        renderPageLayout(booksData);
-    };
-
-    document.getElementById('apply-filters-btn')?.addEventListener('click', applyFilters);
-    document.getElementById('clear-filters-btn')?.addEventListener('click', clearFilters);
-}
-
-function setupBackToTopButton() {
-    const backToTopBtn = document.getElementById('back-to-top-btn');
-    if (!backToTopBtn) return;
-
-    window.addEventListener('scroll', () => {
-        backToTopBtn.classList.toggle('btn-visible', window.scrollY > 300);
-    });
-    backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     initializeGlobalUI();
+    initializeBookModal();
+    initializeCartListeners();
+    updateCartUI();
     setupSidebars();
-    setupFilters();
+    setupFilters(renderPageLayout);
     setupBackToTopButton();
     renderPageLayout(booksData);
-    updateCartUI();
-    initializeCartListeners();
-    initializeBookModal();
 });
