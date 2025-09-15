@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPIA - Finalizar Pedido</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200">
+
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-10 px-2 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#home" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-800 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">C</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">COMPIA</h1>
+                        <p class="text-sm text-gray-600">Editora</p>
+                    </div>
+                </a>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="./index.html" class="nav-link">Início</a>
+                    <a href="./categorias.html" class="nav-link">Categorias</a> 
+                    <a href="./catalogo.html" class="nav-link">Catálogo</a>
+                    <a href="#about" class="nav-link">Sobre</a> 
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input id="search-input" type="text" placeholder="Buscar livros..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <button id="cart-btn" class="relative p-2 text-gray-700 hover:text-blue-800 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9m-9 0h9"></path>
+                        </svg>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            
+            <div class="lg:col-span-2">
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Itens do seu Pedido</h2>
+                    <div class="relative bg-white p-6 rounded-lg shadow-md">
+                        <div class="swiper checkout-swiper">
+                            <div class="swiper-wrapper" id="checkout-items-carousel">
+                                </div>
+                        </div>
+                        <div class="swiper-button-prev-checkout"></div>
+                        <div class="swiper-button-next-checkout"></div>
+                    </div>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Endereço de Entrega</h2>
+                    <div class="bg-white p-6 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="CEP" class="md:col-span-1 border p-2 rounded-md">
+                        <input type="text" placeholder="Rua / Avenida" class="md:col-span-2 border p-2 rounded-md">
+                        <input type="text" placeholder="Número" class="md:col-span-1 border p-2 rounded-md">
+                        <input type="text" placeholder="Complemento (Opcional)" class="md:col-span-1 border p-2 rounded-md">
+                        <input type="text" placeholder="Bairro" class="md:col-span-1 border p-2 rounded-md">
+                        <input type="text" placeholder="Cidade" class="md:col-span-1 border p-2 rounded-md">
+                        <input type="text" placeholder="Estado" class="md:col-span-1 border p-2 rounded-md">
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Forma de Pagamento</h2>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p class="text-gray-500">Funcionalidade de pagamento a ser implementada.</p>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="lg:col-span-1">
+                <div class="bg-white p-6 rounded-lg shadow-md sticky top-28">
+                    <h3 class="text-xl font-bold text-gray-800 border-b pb-3 mb-4">Resumo do Pedido</h3>
+                    <div class="space-y-3 text-gray-600">
+                        <div class="flex justify-between">
+                            <span>Subtotal</span>
+                            <span id="summary-subtotal" class="font-medium">R$ 0,00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Frete</span>
+                            <span id="summary-shipping" class="font-medium">R$ 15,00</span>
+                        </div>
+                        <div class="flex justify-between font-bold text-lg text-gray-800 border-t pt-3 mt-3">
+                            <span>Total</span>
+                            <span id="summary-total">R$ 0,00</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 border-t pt-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">Entregar em:</h4>
+                        <p id="summary-address" class="text-gray-600 text-sm">
+                            Por favor, preencha seu endereço.
+                        </p>
+                    </div>
+                    <button id="confirm-order-btn" class="w-full mt-6 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold text-lg transition-colors">
+                        Confirmar Pedido
+                    </button>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+    
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2025 COMPIA Editora. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="js/pages/checkout.js"></script>
+</body>
+</html>
