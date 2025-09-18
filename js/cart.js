@@ -127,9 +127,7 @@ export function initializeCartListeners() {
         }
         
         if (target.matches('#checkout-btn') && cart.length > 0) {
-            alert('Compra finalizada com sucesso!\n\nObrigado por escolher a COMPIA Editora!');
-            clearCart();
-            document.getElementById('cart-modal').classList.add('hidden');
+            window.location.href = './checkout.html';
         }
     });
 }

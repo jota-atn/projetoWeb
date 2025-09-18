@@ -1,4 +1,37 @@
-import { createBookCardHTML, debounce } from '../ui.js';
+import { debounce } from '../ui.js';
+
+function setupInputMasks() {
+    const cardNumberEl = document.getElementById('card-number');
+    const cardExpiryEl = document.getElementById('card-expiry');
+    const cardCvcEl = document.getElementById('card-cvc');
+
+    if (typeof Cleave === 'undefined') {
+        console.error('A biblioteca Cleave.js não foi carregada.');
+        return;
+    }
+
+    if (cardNumberEl) {
+        new Cleave(cardNumberEl, {
+            blocks: [4, 4, 4, 4],
+            delimiter: ' ',
+            numericOnly: true
+        });
+    }
+
+    if (cardExpiryEl) {
+        new Cleave(cardExpiryEl, {
+            date: true,
+            datePattern: ['m', 'y']
+        });
+    }
+
+    if (cardCvcEl) {
+        new Cleave(cardCvcEl, {
+            blocks: [3],
+            numericOnly: true
+        });
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -15,6 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
         cidade: document.querySelector('input[placeholder="Cidade"]'),
         estado: document.querySelector('input[placeholder="Estado"]'),
     };
+
+    const paymentInputs = {
+        number: document.getElementById('card-number'),
+        name: document.getElementById('card-name'),
+        expiry: document.getElementById('card-expiry'),
+        cvc: document.getElementById('card-cvc'),
+    };
+
+    const confirmBtn = document.getElementById('confirm-order-btn');
 
     if (cart.length === 0) {
         window.location.href = './catalogo.html';
@@ -69,7 +111,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    
+    setupInputMasks();
+
+    const checkFormValidity = () => {
+        const isAddressValid = Object.entries(addressInputs)
+            .every(([key, input]) => input.placeholder.includes('Opcional') || input.value.trim() !== '');
+
+        const isPaymentValid = Object.values(paymentInputs)
+            .every(input => input.value.trim() !== '');
+
+        return isAddressValid && isPaymentValid;
+    };
+
+    const toggleConfirmButton = () => {
+        if (checkFormValidity()) {
+            confirmBtn.disabled = false;
+            confirmBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        } else {
+            confirmBtn.disabled = true;
+            confirmBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+    };
+
     const updateAddressSummary = () => {
         const { cep, rua, numero, bairro, cidade, estado } = addressInputs;
         
@@ -87,11 +150,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    Object.values(addressInputs).forEach(input => {
-        if(input) {
-            input.addEventListener('input', debounce(updateAddressSummary, 300));
+    const allInputs = [...Object.values(addressInputs), ...Object.values(paymentInputs)];
+
+    allInputs.forEach(input => {
+        if (input) {
+            input.addEventListener('input', debounce(() => {
+                toggleConfirmButton();
+                if (Object.values(addressInputs).includes(input)) {
+                    updateAddressSummary();
+                }
+            }, 300));
         }
     });
 
+    confirmBtn.addEventListener('click', () => {
+        if(checkFormValidity()) {
+            alert('Pedido confirmado com sucesso! Obrigado por comprar na COMPIA.');
+            localStorage.removeItem('cart');
+            window.location.href = './index.html';
+        }
+    });
     updateAddressSummary();
+    toggleConfirmButton();
 });

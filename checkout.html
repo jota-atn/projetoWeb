@@ -81,7 +81,24 @@
                 <section>
                     <h2 class="text-2xl font-bold text-gray-800 mb-4">Forma de Pagamento</h2>
                     <div class="bg-white p-6 rounded-lg shadow-md">
-                        <p class="text-gray-500">Funcionalidade de pagamento a ser implementada.</p>
+                        <div>
+                            <label for="card-number" class="block text-sm font-medium text-gray-700">Número do Cartão</label>
+                            <input type="text" id="card-number" placeholder="0000 0000 0000 0000" inputmode="numeric" autocomplete="cc-number" class="w-full mt-1 p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label for="card-name" class="block text-sm font-medium text-gray-700">Nome no Cartão</label>
+                            <input type="text" id="card-name" placeholder="Nome Completo" autocomplete="cc-name" class="w-full mt-1 p-2 border rounded-md">
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-1/2">
+                                <label for="card-expiry" class="block text-sm font-medium text-gray-700">Validade</label>
+                                <input type="text" id="card-expiry" placeholder="MM/AA" inputmode="numeric" autocomplete="cc-exp" class="w-full mt-1 p-2 border rounded-md">
+                            </div>
+                            <div class="w-1/2">
+                                <label for="card-cvc" class="block text-sm font-medium text-gray-700">CVC</label>
+                                <input type="text" id="card-cvc" placeholder="123" inputmode="numeric" autocomplete="cc-csc" class="w-full mt-1 p-2 border rounded-md">
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -125,6 +142,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js"></script>
     <script type="module" src="js/pages/checkout.js"></script>
 </body>
 </html>
