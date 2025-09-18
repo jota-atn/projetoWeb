@@ -32,7 +32,7 @@ function createCategorySectionHTML(category, books, index) {
     return `
         <section class="mb-12">
             <div class="container mx-auto px-4">
-                <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center justify-between mb-0">
                     <h2 class="text-3xl font-bold text-gray-200 pb-2 border-b-2 border-gray-500">${category}</h2>
                     <div class="flex space-x-2 shrink-0">
                         <button class="swiper-button-prev-${index} w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors disabled:opacity-50" aria-label="Slide anterior">
@@ -44,7 +44,7 @@ function createCategorySectionHTML(category, books, index) {
                     </div>
                 </div>
                 <div class="relative">
-                    <div class="swiper category-swiper w-full overflow-hidden" id="swiper-${index}">
+                    <div class="swiper category-swiper w-full overflow-hidden py-4" id="swiper-${index}">
                         <div class="swiper-wrapper">${bookSlidesHTML}</div>
                     </div>
                 </div>
