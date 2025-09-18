@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPIA - Meu Perfil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-300">
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-10 px-2 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#home" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-800 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">C</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">COMPIA</h1>
+                        <p class="text-sm text-gray-600">Editora</p>
+                    </div>
+                </a>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="./index.html" class="nav-link">Início</a>
+                    <a href="./categorias.html" class="nav-link">Categorias</a> 
+                    <a href="./catalogo.html" class="nav-link">Catálogo</a>
+                    <a href="#about" class="nav-link">Sobre</a> 
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input id="search-input" type="text" placeholder="Buscar livros..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <button id="cart-btn" class="relative p-2 text-gray-700 hover:text-blue-800 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9m-9 0h9"></path>
+                        </svg>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-1 space-y-8">
+                <div class="flex justify-center">
+                    <img id="profile-pic" src="" alt="Foto do Perfil" class="w-48 h-48 rounded-full border-4 border-white shadow-lg object-cover">
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <div>
+                        <label class="text-sm font-semibold text-gray-500">Nome Completo</label>
+                        <p id="profile-name" class="text-lg text-gray-800"></p>
+                    </div>
+                    <div>
+                        <label class="text-sm font-semibold text-gray-500">Email</label>
+                        <p id="profile-email" class="text-lg text-gray-800"></p>
+                    </div>
+                    <div>
+                        <label class="text-sm font-semibold text-gray-500">Telefone</label>
+                        <p id="profile-phone" class="text-lg text-gray-800"></p>
+                    </div>
+                    <div>
+                        <label class="text-sm font-semibold text-gray-500">Data de Nascimento</label>
+                        <p id="profile-birthdate" class="text-lg text-gray-800"></p>
+                    </div>
+                    <div>
+                        <label class="text-sm font-semibold text-gray-500">CPF</label>
+                        <p id="profile-cpf" class="text-lg text-gray-800"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-4">Gerenciar Conta</h2>
+                    <div class="space-y-4">
+                        <button data-modal="payment-modal" class="profile-action-btn">
+                            <span>Formas de Pagamento</span>
+                            <span class="text-gray-400">&rarr;</span>
+                        </button>
+                        <button data-modal="address-modal" class="profile-action-btn">
+                            <span>Endereços</span>
+                            <span class="text-gray-400">&rarr;</span>
+                        </button>
+                        <button data-modal="orders-modal" class="profile-action-btn">
+                            <span>Meus Pedidos</span>
+                            <span class="text-gray-400">&rarr;</span>
+                        </button>
+                        <button data-modal="data-modal" class="profile-action-btn">
+                            <span>Editar Meus Dados</span>
+                            <span class="text-gray-400">&rarr;</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-4 text-right">
+                     <button class="text-sm text-red-500 hover:underline font-medium py-2 px-4">Sair da Conta</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2025 COMPIA Editora. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="payment-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="modal-title mb-0">Formas de Pagamento</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div id="payment-list" class="space-y-4 max-h-80 overflow-y-auto pr-2">
+                </div>
+            <div class="mt-6 border-t pt-4">
+                <button class="w-full bg-blue-700 text-white py-2 rounded-lg font-semibold hover:bg-blue-800 transition-colors">
+                    Adicionar Novo Cartão
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="address-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="modal-title mb-0">Meus Endereços</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div id="address-list" class="space-y-4 max-h-80 overflow-y-auto pr-2">
+                </div>
+            <div class="mt-6 border-t pt-4">
+                <button class="w-full bg-blue-700 text-white py-2 rounded-lg font-semibold hover:bg-blue-800 transition-colors">
+                    Adicionar Novo Endereço
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="orders-modal" class="modal-overlay hidden">
+        <div class="modal-content max-w-3xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="modal-title mb-0">Meus Pedidos</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div id="orders-list" class="space-y-6 max-h-[70vh] overflow-y-auto pr-2">
+                </div>
+        </div>
+    </div>
+
+    <div id="data-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="modal-title mb-0">Editar Meus Dados</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            
+            <form id="edit-profile-form" class="space-y-4">
+                <div>
+                    <label for="edit-name" class="block text-sm font-medium text-gray-700">Nome Completo</label>
+                    <input type="text" id="edit-name" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="edit-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="edit-email" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="edit-phone" class="block text-sm font-medium text-gray-700">Telefone</label>
+                    <input type="tel" id="edit-phone" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="edit-birthdate" class="block text-sm font-medium text-gray-700">Data de Nascimento</label>
+                    <input type="text" id="edit-birthdate" placeholder="DD/MM/AAAA" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="edit-cpf" class="block text-sm font-medium text-gray-700">CPF</label>
+                    <input type="text" id="edit-cpf" class="w-full mt-1 p-2 border rounded-md bg-gray-100 cursor-not-allowed" disabled>
+                    <p class="text-xs text-gray-400 mt-1">O CPF não pode ser alterado.</p>
+                </div>
+                <div class="mt-6 border-t pt-4">
+                    <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                        Salvar Alterações
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script type="module" src="js/pages/perfil.js"></script>
+
+</body>
+</html>
