@@ -12,8 +12,7 @@
 <body class="bg-gray-200">
 
     <header class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-10 px-2 py-4">
-            <div class="flex items-center justify-between">
+        <div class="container mx-auto px-4 py-4"> <div class="flex items-center justify-between w-full">
                 <a href="#home" class="flex items-center space-x-3">
                     <div class="w-10 h-10 bg-gradient-to-r from-blue-800 to-cyan-500 rounded-lg flex items-center justify-center">
                         <span class="text-white font-bold text-lg">C</span>
@@ -44,12 +43,17 @@
                         </svg>
                         <span id="cart-count" class="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center cart-count">0</span>
                     </button>
+                    <button id="profile-btn" class="relative p-2 text-gray-700 hover:text-blue-800 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-12">
+    <main class="container scroll-mt-20 mx-auto px-4 py-12">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             
             <div class="lg:col-span-2">
