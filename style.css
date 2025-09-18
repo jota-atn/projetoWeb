@@ -173,6 +173,109 @@ body.sidebar-collapsed #sidebar {
     flex-direction: column;
 }
 
+.swiper-button-prev-checkout,
+.swiper-button-next-checkout {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--color-brand-dark); 
+}
+
+.swiper-button-prev-checkout {
+    left: -10px; 
+}
+
+.swiper-button-next-checkout {
+    right: -10px;
+}
+
+.swiper-button-prev-checkout::after,
+.swiper-button-next-checkout::after {
+    font-family: swiper-icons;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.swiper-button-prev-checkout::after {
+    content: 'prev';
+}
+
+.swiper-button-next-checkout::after {
+    content: 'next';
+}
+
+/* Adicione no final de style.css */
+
+/* --- Estilos da Página de Perfil --- */
+
+.profile-action-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s, border-color 0.2s;
+    font-weight: 500;
+}
+
+.profile-action-btn:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 60;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay:not(.hidden) {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #1f2937;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: #9ca3af;
+    border: none;
+    background: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
 @media (max-width: 767px) {
     .page-container {
         grid-template-columns: 1fr;
