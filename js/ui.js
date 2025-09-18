@@ -389,3 +389,42 @@ export function initializeCarousels() {
     });
 }
 
+export function initializeProfileDropdown() {
+    const profileBtn = document.getElementById('profile-btn');
+    const profileDropdown = document.getElementById('profile-dropdown');
+    
+    if (!profileBtn || !profileDropdown) return;
+
+    const logoutBtn = document.getElementById('logout-btn');
+
+    const toggleDropdown = (event) => {
+        event.stopPropagation();
+        const isVisible = profileDropdown.classList.contains('visible');
+
+        if (isVisible) {
+            profileDropdown.classList.remove('opacity-100', 'visible');
+            profileDropdown.classList.add('opacity-0', 'invisible');
+        } else {
+            profileDropdown.classList.remove('opacity-0', 'invisible');
+            profileDropdown.classList.add('opacity-100', 'visible');
+        }
+    };
+
+    profileBtn.addEventListener('click', toggleDropdown);
+
+    window.addEventListener('click', () => {
+        if (profileDropdown.classList.contains('visible')) {
+            profileDropdown.classList.remove('opacity-100', 'visible');
+            profileDropdown.classList.add('opacity-0', 'invisible');
+        }
+    });
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            alert('Você foi desconectado!');
+            window.location.href = 'login.html';
+        });
+    }
+}
+
