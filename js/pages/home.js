@@ -4,7 +4,8 @@ import {
     createBookCardHTML, 
     initializeGlobalUI, 
     initializeBackToTopButton,
-    initializeBookModal
+    initializeBookModal,
+    initializeProfileDropdown
 } from '../ui.js';
 
 function renderCatalogCarousel() {
@@ -51,4 +52,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeGlobalUI();
     initializeBackToTopButton();
     initializeBookModal();
+    initializeProfileDropdown();
 });

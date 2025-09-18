@@ -1,4 +1,4 @@
-import { debounce } from '../ui.js';
+import { debounce, initializeProfileDropdown } from '../ui.js';
 
 function setupInputMasks() {
     const cardNumberEl = document.getElementById('card-number');
@@ -172,4 +172,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     updateAddressSummary();
     toggleConfirmButton();
+    initializeProfileDropdown();
 });

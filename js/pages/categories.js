@@ -6,7 +6,8 @@ import {
     initializeBookModal,
     setupBackToTopButton,
     setupFilters,
-    setupSidebars
+    setupSidebars,
+    initializeProfileDropdown
 } from '../ui.js';
 
 let swiperInstances = [];
@@ -117,4 +118,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFilters(renderPageLayout);
     setupBackToTopButton();
     renderPageLayout(booksData);
+    initializeProfileDropdown();
 });

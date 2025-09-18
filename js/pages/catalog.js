@@ -6,7 +6,8 @@ import {
     initializeBookModal,
     setupBackToTopButton,
     setupFilters,
-    setupSidebars
+    setupSidebars,
+    initializeProfileDropdown
 } from '../ui.js';
 
 function renderBooksGrid(books) {
@@ -29,4 +30,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFilters(renderBooksGrid);
     setupBackToTopButton();
     renderBooksGrid(booksData);
+    initializeProfileDropdown();
 });

@@ -1,4 +1,5 @@
 import { userData } from '../profileData.js';
+import { initializeProfileDropdown } from '../ui.js';
 
 
 function renderAddressesModal() {
@@ -181,4 +182,5 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('profile-birthdate').textContent = newBirthdate;
         });
     }
+    initializeProfileDropdown();
 });

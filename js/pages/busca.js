@@ -7,7 +7,8 @@ import {
     setupFilters,
     setupBackToTopButton,
     createCarouselSectionHTML,
-    initializeCarousels
+    initializeCarousels,
+    initializeProfileDropdown
 } from '../ui.js';
 
 let initialSearchResults = [];
@@ -130,4 +131,5 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPageContent(initialSearchResults, initialOtherBooks);
     
     setupFiltersForSearchPage();
+    initializeProfileDropdown();
 });
