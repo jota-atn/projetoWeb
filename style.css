@@ -14,13 +14,13 @@ html, body {
     margin: 0;
     font-family: var(--font-primary);
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 body {
     display: flex;
     flex-direction: column;
     background-color: #f1f5f9;
-    scroll-behavior: smooth;
 }
 
 .gradient-bg {
@@ -211,10 +211,6 @@ body.sidebar-collapsed #sidebar {
 .swiper-button-next-checkout::after {
     content: 'next';
 }
-
-/* Adicione no final de style.css */
-
-/* --- Estilos da Página de Perfil --- */
 
 .profile-action-btn {
     display: flex;
