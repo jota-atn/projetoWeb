@@ -30,7 +30,7 @@ function createCategorySectionHTML(category, books, index) {
     `).join('');
 
     return `
-        <section class="mb-12">
+        <section class="mb-2">
             <div class="container mx-auto px-4">
                 <div class="flex items-center justify-between mb-0">
                     <h2 class="text-3xl font-bold text-gray-200 pb-2 border-b-2 border-gray-500">${category}</h2>
@@ -44,7 +44,7 @@ function createCategorySectionHTML(category, books, index) {
                     </div>
                 </div>
                 <div class="relative">
-                    <div class="swiper category-swiper w-full overflow-hidden py-4" id="swiper-${index}">
+                    <div class="swiper category-swiper w-full overflow-hidden py-6" id="swiper-${index}">
                         <div class="swiper-wrapper">${bookSlidesHTML}</div>
                     </div>
                 </div>

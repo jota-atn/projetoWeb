@@ -338,7 +338,7 @@ export function createCarouselSectionHTML(title, books, sectionId, noResultsMess
     if (!books || books.length === 0) {
         if (!noResultsMessage) return '';
         return `
-            <section class="container mx-auto px-4 mb-12">
+            <section class="container mx-auto px-4 mb-0">
                 <h2 class="text-3xl font-bold text-gray-200 pb-2 border-b-2 border-gray-500">${title}</h2>
                 <p class="text-lg text-gray-300 mt-6 bg-white/5 p-6 rounded-lg">${noResultsMessage}</p>
             </section>
@@ -348,8 +348,8 @@ export function createCarouselSectionHTML(title, books, sectionId, noResultsMess
     const bookSlidesHTML = books.map(book => `<div class="swiper-slide h-auto pb-10">${createBookCardHTML(book)}</div>`).join('');
 
     return `
-        <section class="container mx-auto px-4 mb-12">
-            <div class="flex items-center justify-between mb-4">
+        <section class="container mx-auto px-4 mb-2">
+            <div class="flex items-center justify-between mb-2">
                 <h2 class="text-3xl font-bold text-gray-200 pb-2 border-b-2 border-gray-500">${title}</h2>
                 <div class="flex space-x-2 shrink-0">
                     <button class="swiper-button-prev-${sectionId} w-9 h-9 md:w-10 md-h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors disabled:opacity-50" aria-label="Slide anterior">
@@ -361,7 +361,7 @@ export function createCarouselSectionHTML(title, books, sectionId, noResultsMess
                 </div>
             </div>
             <div class="relative">
-                <div class="swiper category-swiper w-full overflow-hidden" id="swiper-${sectionId}">
+                <div class="swiper category-swiper w-full overflow-hidden py-4" id="swiper-${sectionId}">
                     <div class="swiper-wrapper">${bookSlidesHTML}</div>
                 </div>
             </div>
